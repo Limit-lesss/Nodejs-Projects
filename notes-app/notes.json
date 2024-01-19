@@ -1,1 +1,18 @@
-[{"title":"sell list","body":"shoes,car,truck"},{"title":"list","body":"shoes,car,truck"}]
+[
+    {
+        "title": "sell list",
+        "body": "shoes,car,truck"
+    },
+    {
+        "title": "list",
+        "body": "shoes,car,truck"
+    },
+    {
+        "title": "buy list",
+        "body": "shoes,car,truck"
+    },
+    {
+        "title": "buy",
+        "body": "shoes,car,truck"
+    }
+]

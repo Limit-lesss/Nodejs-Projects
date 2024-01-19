@@ -19,12 +19,10 @@ const duplicateNote = (title) => {
   try {
     const notesJson = fs.readFileSync("./notes.json", "utf-8");
     const notes = JSON.parse(notesJson);
-    const index = notes.findIndex((e) => e.title === title);
-    if (index === -1) return false;
-    return true;
+    return notes.find((e) => e.title === title);
   } catch {
     return false;
-  }
+  } 
 };
 // load notes
 const loadNotes = () => {
@@ -58,7 +56,10 @@ const list = () => {
   try {
     const notes = loadNotes();
     if (notes.length === 0) console.log(chalk.red("Sorry, No note found!"));
-    else console.log(notes);
+    else {
+      console.log(chalk.bgWhite("Your notes"));
+      notes.forEach((e) => console.log(chalk.green("Title: ") + e.title));
+    }
   } catch {
     console.log(chalk.red("Sorry, No note found!"));
   }
@@ -69,9 +70,14 @@ const readNotes = (title) => {
     const notes = loadNotes();
     if (notes.length === 0) console.log(chalk.red("Sorry, No note found!"));
     else {
-      const newNote = notes.filter((e) => e.title === title);
-      newNote.length !== 0
-        ? console.log(newNote)
+      const index = notes.findIndex((e) => e.title === title);
+      index !== -1
+        ? console.log(
+            "Title: " +
+              chalk.italic(notes[index].title) +
+              "\nBody: " +
+              notes[index].body
+          )
         : console.log(chalk.red("Sorry, No note found!"));
     }
   } catch {
