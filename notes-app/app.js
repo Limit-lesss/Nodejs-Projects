@@ -1,6 +1,6 @@
 const chalk = require("chalk");
 const yargs = require("yargs");
-const { getNotes, addNotes, removeNotes } = require("./notes");
+const { addNotes, removeNotes, readNotes, list } = require("./notes");
 
 // create add command
 yargs.command({
@@ -41,8 +41,15 @@ yargs.command({
 yargs.command({
   command: "read",
   describe: "read a note",
-  handler: () => {
-    console.log("Reading a note");
+  builder: {
+    title: {
+      describe: "Note title",
+      demandOption: true,
+      type: "string",
+    },
+  },
+  handler: (argv) => {
+    readNotes(argv.title);
   },
 });
 //create list command
@@ -50,7 +57,7 @@ yargs.command({
   command: "list",
   describe: "list your notes",
   handler: () => {
-    console.log("Listing all notes");
+    list();
   },
 });
 
