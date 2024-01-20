@@ -4,6 +4,7 @@ const chalk = require("chalk");
 //add notes
 const addNotes = (title, body) => {
   const notes = loadNotes();
+  // debugger;
   if (duplicateNote(title)) {
     console.log(chalk.red("Title name already exit!\nTry new Title name"));
     return;
@@ -22,7 +23,7 @@ const duplicateNote = (title) => {
     return notes.find((e) => e.title === title);
   } catch {
     return false;
-  } 
+  }
 };
 // load notes
 const loadNotes = () => {
